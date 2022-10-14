@@ -21,9 +21,10 @@
         Travel Buddy
       </p>
       <p class="subtitle">
-        Your best choice to track your flight and receive live weather information!<img
-          src="./assets/images/airplane.png">
+        Your best choice to track your flight and receive live weather information!
       </p>
+      <img
+          src="./assets/images/airplane.png">
     </div>
   </section>
 
@@ -32,26 +33,40 @@
     <aside class="aside-bar">
       <input class="input is-normal" type="text" placeholder="Flight number">
       <div class="btns">
-        <button class="button" onclick="">Search</button>
-        <button class="button" onclick="">Clear Search</button>
+        <button class="button" id="btn-search" onclick="">Search</button>
+        <button class="button" id="btn-clear" onclick="">Clear Search</button>
       </div>
-      <button class="button" onclick="">Clear Search</button>
+      <button class="button" id="btn-history" onclick="">City history</button>
     </aside>
 
     <div class="sections">
 
-      <div class="flight-status">
+      <div class="flight-status" class="container">
         <section class="styling">
           <h1>Flight Status Data</h1>
           <p>This is the most updated information about your flight:</p>
+          <img src="./assets/images/weather-section.png">
         </section>
+        <div class="current-flight">
+          
+          We can use this div to display the data received for Flight Status
+          
+
+        </div>
       </div>
 
-      <div class="weather-data">
+      <div class="weather-data" class="container.is-widescreen">
         <section class="styling">
           <h1>Weather Information</h1>
           <p>This is the weather for your destination city:</p>
+          <img src="./assets/images/weather.png">
         </section>
+        <div class="current-weather">
+          
+          We can use this div to display the data received current weather
+          
+
+        </div>
       </div>
 
     </div>
