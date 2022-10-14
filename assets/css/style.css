@@ -4,12 +4,12 @@ body {
 }
 .aside-bar {
     width: 30%;
-    border-right: 2px solid black;
-    height: 100vh;
+    border-right: 2px solid #B0C4DE;
+    height: 120vh;
     padding: 15px 15px;
     margin-top: 10px;
     margin-bottom: 0;
-    background-color: lightblue;
+    background-color: #f1f1f1;
     border-radius: 10px ;
 }
 
@@ -17,12 +17,15 @@ body {
     background-color: lightcoral;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    height: 225px;
+    display:flex;
+    flex-wrap: wrap;
 }
 
 .hero img {
     position:relative;
-    right: -110px;
-    bottom: 50px;
+    right: -800px;
+    bottom: 125px;
     width:150px;
     height:150px;
     
@@ -38,29 +41,46 @@ body {
 
 .flight-status {
     padding: 10px 10px;
-    border: 2px solid black;
+    border: 2px solid #B0C4DE;
     margin-left: 15px;
-    height: 50vh;
     margin-top: 10px;
     background-color: #f1f1f1;
     border-radius: 10px;
-    width: 70vw
+    width: 70vw;
+    
+}
+
+.current-flight, .current-weather {
+    height: 47vh;
     
 }
 
 .weather-data {
     padding: 10px 10px;
-    border: 2px solid black;
+    border: 2px solid #B0C4DE;
     margin-left: 15px;
-    height: 48vh;
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: #f1f1f1;
     border-radius: 10px;
     width: 70vw;
 }
 
+
+
 .button {
 font-family: 'Fuzzy Bubbles';
+}
+
+#btn-search {
+    background-color:lightgreen
+}
+
+#btn-clear {
+    background-color: rgb(246, 126, 126);
+}
+
+#btn-history {
+    width:100%;
 }
 
 .button:hover {
@@ -73,9 +93,24 @@ opacity: 0.7;
 
 .sections h1 {
     font-size: 40px;
-    width:100%
+    width:100%;
+    text-align:center
+}
+
+.sections p {
+    text-align:center;
 }
 
 .styling {
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid #B0C4DE;
+    height:100px;
+    display:flex;
+    flex-direction: column;
+}
+
+.styling img {
+    width: 80px;
+    position:relative;
+    top: -80px;
+    right: -650px;
 }
