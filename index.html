@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <title>Document</title>
-  </head>
-  <body>
 
-    
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title> Document </title>
+</head>
 
-    <script src="./assets/main.js/script.js"></script>
-  </body>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <p class="title">
+        Travel Buddy
+      </p>
+      <p class="subtitle">
+        Your best choice to track your flight! bla bla bla bla
+      </p>
+    </div>
+  </section>
+  <div class="row">
+    <aside class="aside-bar">
+      <input class="input is-normal" type="text" placeholder="Flight number">
+      <button class="button" onclick="showLocation()">Search</button>
+    </aside>
+
+    <section class="flight-status">
+      <h2>Flight Status Data</h2>
+      <p>This is the most updated information about your flight:</p>
+    </section>
+  </div>
+
+
+  <script src="./assets/main.js/script.js"></script>
+</body>
+
 </html>
