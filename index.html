@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title> Document </title>
@@ -18,24 +21,43 @@
         Travel Buddy
       </p>
       <p class="subtitle">
-        Your best choice to track your flight! bla bla bla bla
+        Your best choice to track your flight and receive live weather information!<img
+          src="./assets/images/airplane.png">
       </p>
     </div>
   </section>
+
+
   <div class="row">
     <aside class="aside-bar">
       <input class="input is-normal" type="text" placeholder="Flight number">
-      <button class="button" onclick="showLocation()">Search</button>
+      <div class="btns">
+        <button class="button" onclick="">Search</button>
+        <button class="button" onclick="">Clear Search</button>
+      </div>
+      <button class="button" onclick="">Clear Search</button>
     </aside>
 
-    <section class="flight-status">
-      <h2>Flight Status Data</h2>
-      <p>This is the most updated information about your flight:</p>
-    </section>
-  </div>
+    <div class="sections">
+
+      <div class="flight-status">
+        <section class="styling">
+          <h1>Flight Status Data</h1>
+          <p>This is the most updated information about your flight:</p>
+        </section>
+      </div>
+
+      <div class="weather-data">
+        <section class="styling">
+          <h1>Weather Information</h1>
+          <p>This is the weather for your destination city:</p>
+        </section>
+      </div>
+
+    </div>
 
 
-  <script src="./assets/main.js/script.js"></script>
+    <script src="./assets/main.js/script.js"></script>
 </body>
 
 </html>
