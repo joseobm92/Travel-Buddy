@@ -1,10 +1,22 @@
 // set global api keys & api url 
 var aviationApiKey = `7816c8081349207f6be21d8c375a0feb`;
 var weatherApiKey = `6735dc29946d3cda39fe5ca05b775eab`;
+var googleApiKey = `AIzaSyBUQL-4--T-AVcWTpL6FLw-FpMsIkEpjuU`
 var aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}`;
-// var geoCodingUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid=${weatherApiKey}`
 var weatherApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat={cityLat}&lon={cityLon}&units=imperial&exclude=minutely,hourly,alerts&appid=${weatherApiKey}`;
-var cityWeatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid=${weatherApiKey}`;
+
+// not using
+// var geoCodingUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid=${weatherApiKey}`
+//var cityWeatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid=${weatherApiKey}`;
+
+
+
+// Global DOM elements
+var inputEl = $(".input");
+var currentWeatherEl = $(".current-weather");
+var destinationWeatherEl = $(".destination-weather");
+var currentFlightEl = $(".current-flight");
+
 
 
 var today = moment().format('MMMM Do YYYY');
@@ -60,58 +72,82 @@ function localWeather(data) {
   var localHumidity = data.current.humidity;
   var localWindSpeed = data.current.wind_speed;
   var localDesc = data.current.weather[0].description;
-  var icon = data.current.weather[0].icon;
-
+  var iconCode = data.current.weather[0].icon;
+  var iconImgURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
  
+  
   // log data 
   console.log(localTemp);
   console.log(localHumidity);
   console.log(localWindSpeed);
   console.log(localDesc);
-  console.log(icon);
+  console.log(iconCode);
 
-  // create elements
+  // create elements & set content 
+  var localTempEl = $("<p>").text(`Local Temp: ${localTemp} °F`);
+  var localHumidityEl = $("<p>").text(`Local Humidity ${localHumidity} %`);
+  var localWindSpeedEl = $("<p>").text(`Local Windspeed: ${localWindSpeed} MPH`);
+  var localDescEl = $("<p>").text(`Local Weather Desc: ${localDesc}`);
+  var iconImgEl = $("<img>").attr("src", iconImgURL);
+
 
   // append elements 
-
-  // give elements data/content 
-
+  currentWeatherEl.append(localTempEl, iconImgEl, localHumidityEl, localWindSpeedEl, localDescEl);
+ 
 }
 
-function airportLocation() {
+
+// destination weather function
+function arrivalWeather(data) {
+
+  // weather vars
+  var temp = data.current.temp;
+  var humidity = data.current.humidity;
+  var windSpeed = data.current.wind_speed;
+  var desc = data.current.weather[0].description;
+  var iconCode = data.current.weather[0].icon;
+  var iconImgURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+ 
   
-  var airport = "George Bush Intercontinental";
+  // log data 
+  console.log(temp);
+  console.log(humidity);
+  console.log(windSpeed);
+  console.log(desc);
+  console.log(iconCode);
 
-  aviationApiUrl = `http://api.aviationstack.com/v1/airports?access_key=${aviationApiKey}`;
-  console.log(aviationApiUrl);
+  // create elements & set content 
+  var arrTempEl = $("<p>").text(`Destination Temp: ${temp} F`);
+  var arrHumidityEl = $("<p>").text(`Destination Humidity ${humidity} %`);
+  var arrWindSpeedEl = $("<p>").text(`Destination Windspeed: ${windSpeed} MPH`);
+  var arrDescEl = $("<p>").text(`Destination Weather Desc: ${desc}`);
+  var arrIconImgEl = $("<img>").attr("src", iconImgURL);
 
-  
 
+  // append elements 
+  arrTempEl.append(arrIconImgEl);
+  destinationWeatherEl.append(arrTempEl, arrHumidityEl, arrWindSpeedEl, arrDescEl);
+ 
 }
 
-airportLocation();
 
-// dont forget to add input parameter
-function flightData() {
-  // flight number method 1
+function airportData(data) {
+
+  var lat = data.results[0].geometry.location.lat;
+  var lng = data.results[0].geometry.location.lng;
+
+  weatherApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&units=imperial&exclude=minutely,hourly,alerts&appid=${weatherApiKey}`;
+ 
   
-  var flightNum = `UA2261`;
-  var airline = 'Frontier'
-  aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}&flight_iata=${flightNum}`;
-  console.log(aviationApiUrl);
-
   // get data from weathermap 
-  fetch(aviationApiUrl)
+  fetch(weatherApiUrl)
       .then(function (response) {
       if (response.ok) {
           console.log(response);
           response.json().then(function (data) {
           
-          // data logs 
-          console.log(data);
-          console.log(data.data[0].arrival.airport);
-          // call local weather function pass in data 
-          //localWeather(data);
+          // call arrival weather and pass data  
+          arrivalWeather(data);
           });
       } 
       else {
@@ -126,24 +162,116 @@ function flightData() {
 }
 
 
+// fetches airport data through google maps api
+function airportLocation(iata) {
+  
+  var airport = iata;
 
-flightData();
 
-/*
-function handleFlightSearch() {
+  var geocodeURl =  `https://maps.googleapis.com/maps/api/geocode/json?address=${airport}&key=${googleApiKey}`;
 
-  // if no data from user
-  if(!inputEl.value) {
-    // please enter valid flight number
-    return;
-  }
-  // fetch flight data 
-  var input = inputEl.value;
-  flightData(input);
+  console.log(geocodeURl);
+
+  fetch(geocodeURl)
+    .then(function (response) {
+      if (response.ok) {
+        console.log(response);
+        response.json().then(function (data) {
+        console.log(data);
+        airportData(data);
+        });
+      } 
+       else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to connect to Server');
+    });
+}
+
+
+
+
+function renderFlightData(data) {
+
+  // flight local variables from data
+  var flightStatus = data.data[0].flight_status;
+  var arrAirport = data.data[0].arrival.airport;
+  var arrIATA = data.data[0].arrival.iata;
+  var terminal = data.data[0].arrival.terminal;
+  var gate = data.data[0].arrival.gate;
+
+  // logging flight data
+  console.log(flightStatus);
+  console.log(arrAirport);
+  console.log(arrIATA);
+  console.log(terminal);
+  console.log(gate);
+
+  // create elements & set content 
+  var flightStatusEl = $("<p>").text(`Flight Status: ${flightStatus}`);
+  var airportEl = $("<p>").text(`Airport: ${arrAirport}`);
+  var terminalEl = $("<p>").text(`Terminal: ${terminal}`);
+  var gateEl = $("<p>").text(`Gate: ${gate}`);
+ 
+  // append elements 
+  currentFlightEl.append(flightStatusEl, airportEl, terminalEl, gateEl);
+
+  airportLocation(arrIATA);
+}
+
+// dont forget to add input parameter
+function flightData(input) {
+
+  // flight number
+  var flightNum = input;
+
+  aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}&flight_iata=${flightNum}`;
+  console.log(aviationApiUrl);
+
+  // get data from weathermap 
+  fetch(aviationApiUrl)
+      .then(function (response) {
+      if (response.ok) {
+          console.log(response);
+          response.json().then(function (data) {
+      
+          // call RenderFlightData
+          renderFlightData(data);
+          
+          });
+      } 
+      else {
+          alert('Error: ' + response.statusText);
+      }
+      })
+      .catch(function (error) {
+      alert('Unable to connect to Server');
+      });
 
 }
 
-*/
+
+
+
+// flight input search function
+function handleFlightSearch() {
+
+  // if no data from user
+  if(!inputEl.val()) {
+    // please enter valid flight number
+    console.log(inputEl.val())
+    return;
+  }
+  // fetch flight data 
+  var input = inputEl.val();
+  console.log(input);
+  // fetch flight data function passing input 
+  flightData(input);
+}
+
+
 
 
 // error function message 
@@ -154,13 +282,11 @@ function error(err) {
 
 
 
-// Input flight number 
-// Output the city's data lat, long, city name, city weather, flight status  
 // calls get client current position 
 navigator.geolocation.getCurrentPosition(showLocation, error, options);
 
 // click listener will call handle flight search 
-
+$("#btn-search").click(handleFlightSearch);
 
   
 /* generic fetch 
@@ -181,21 +307,3 @@ fetch(apiUrl)
 });
 
 */
-
-/*
-    fetch(geoCodingUrl)
-    .then(function (response) {
-    if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-        console.log(data);
-        });
-    } 
-    else {
-        alert('Error: ' + response.statusText);
-    }
-    })
-    .catch(function (error) {
-    alert('Unable to connect to Server');
-    });
-    */

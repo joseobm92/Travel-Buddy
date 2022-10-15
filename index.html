@@ -55,23 +55,20 @@
         </div>
       </div>
 
-      <div class="weather-data" class="container.is-widescreen">
-        <section class="styling">
-          <h1>Weather Information</h1>
-          <p>This is the weather for your destination city:</p>
-          <img src="./assets/images/weather.png">
-        </section>
-        <div class="current-weather">
-          
-          We can use this div to display the data received current weather
-          
-
+      <section class="styling weather-data">
+        <h1>Weather Information</h1>
+        <div class="weather-container columns">            
+          <div class="current-weather column is-6"></div>
+          <div class="destination-weather column is-6">
+            This is the weather for your destination city:
+          </div>
         </div>
-      </div>
+      </section>
+
 
     </div>
-
-
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
     <script src="./assets/main.js/script.js"></script>
 </body>
 
