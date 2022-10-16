@@ -7,7 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title> Document </title>
@@ -15,61 +17,64 @@
 
 <body>
 
-  <section class="hero">
+  <section class="hero has-background-info">
     <div class="hero-body">
-      <p class="title">
+      <p class="title is-1">
         Travel Buddy
       </p>
-      <p class="subtitle">
-        Your best choice to track your flight and receive live weather information!
+      <p class="subtitle is-3">
+        Your best choice to track your flight and receive live weather information!<span class="ml-6 pl-6"><img style="max-height:120px" src="./assets/images/airplane.png"></pan>
       </p>
-      <img
-          src="./assets/images/airplane.png">
     </div>
   </section>
 
-
-  <div class="row">
-    <aside class="aside-bar">
-      <input class="input is-normal" type="text" placeholder="Flight number">
-      <div class="btns">
-        <button class="button" id="btn-search" onclick="">Search</button>
-        <button class="button" id="btn-clear" onclick="">Clear Search</button>
-      </div>
-      <button class="button" id="btn-history" onclick="">City history</button>
-    </aside>
-
-    <div class="sections">
-
-      <div class="flight-status" class="container">
-        <section class="styling">
-          <h1>Flight Status Data</h1>
-          <p>This is the most updated information about your flight:</p>
-          <img src="./assets/images/weather-section.png">
-        </section>
-        <div class="current-flight">
-          
-          We can use this div to display the data received for Flight Status
-          
-
+  <section class="section has-background-primary-light mb-3 mt-3">
+    <div class="columns">
+      <aside class="column is-2-mobile">
+        <input class="input is-normal is-rounded" type="text" placeholder="Flight number">
+        <div class="buttons mt-3">
+          <button class="button is-success is-outlined is-rounded" id="btn-search" onclick="">Search</button>
+          <button class="button is-danger is-rounded is-outlined" id="btn-clear" onclick="">Clear Search</button>
+          <button class="button is-link is-rounded is-outlined" id="btn-history" onclick="">City history</button>
         </div>
-      </div>
+      </aside>
 
-      <section class="styling weather-data">
-        <h1>Weather Information</h1>
-        <div class="weather-container columns">            
-          <div class="current-weather column is-6"></div>
-          <div class="destination-weather column is-6">
-            This is the weather for your destination city:
+
+      <div class="column is-5-mobile">
+        <div class="box has-background-info">
+          <div class="flight-status section">
+            <section class="content">
+              <h1 class="title is-2">Flight Status Data</h1>
+              <p class="subtitle is-5">This is the most updated information about your flight:</p>
+              <!-- <img class="column" src="./assets/images/weather-section.png"> -->
+            </section>
+            <div class="current-flight section is is-size-4 has-text-weight-bold"></div>
           </div>
         </div>
-      </section>
+      </div>
 
 
+      <div class="column is-5-mobile">
+        <div class="box has-background-info">
+          <div class="weather-data section">
+            <section class="content">
+              <h1 class="title is-2">Weather Information</h1>
+              <p class="subtitle is-5"> This is the weather for your destination city:</p>
+            </section>
+            <div class="weather-container section is-size-4 has-text-weight-bold">
+              <div class="current-weather"></div>
+              <div class="destination-weather"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
-    <script src="./assets/main.js/script.js"></script>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="./assets/main.js/script.js"></script>
 </body>
 
 </html>
