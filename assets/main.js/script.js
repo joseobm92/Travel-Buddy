@@ -5,15 +5,10 @@ var googleApiKey = `AIzaSyBUQL-4--T-AVcWTpL6FLw-FpMsIkEpjuU`
 var aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}`;
 var weatherApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat={cityLat}&lon={cityLon}&units=imperial&exclude=minutely,hourly,alerts&appid=${weatherApiKey}`;
 
-// not using
-// var geoCodingUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid=${weatherApiKey}`
-//var cityWeatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid=${weatherApiKey}`;
-
 
 
 // Global DOM elements
 var inputEl = $(".input");
-var currentWeatherEl = $(".current-weather");
 var destinationWeatherEl = $(".destination-weather");
 var currentFlightEl = $(".current-flight");
 var searchHistoryEl = $(".search-history");
@@ -31,97 +26,14 @@ function renderSearchHistory() {
   for(var i = 0; i < localStorage.length; i ++) {
   
       var flightNum = localStorage.getItem(localStorage.key(i));
-      console.log(flightNum);
       var flightNumBtn = $("<button>").addClass("btn-search-history button is-link is-rounded is-outlined");
-      console.log(flightNumBtn);
+      
       flightNumBtn.text(flightNum);
 
       //
       searchHistoryEl.append(flightNumBtn);
   }
 }
-
-/* Start of Client Current Location Weather Functions  */
-
-// error function message 
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-
-// options for client coords 
-const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-  
-// get client coords function & fetch weather data   
-function showLocation(pos) {
-  const coords = pos.coords;
-
-  console.log(pos);
-  console.log(coords);
-  console.log(`Latitude : ${coords.latitude}`);
-  console.log(`Longitude: ${coords.longitude}`);
-
-  weatherApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coords.latitude}&lon=${coords.longitude}&units=imperial&exclude=minutely,hourly,alerts&appid=${weatherApiKey}`;
-  console.log(weatherApiUrl);
-  
-  // get data from weathermap 
-  fetch(weatherApiUrl)
-      .then(function (response) {
-      if (response.ok) {
-          console.log(response);
-          response.json().then(function (data) {
-          
-          // data logs 
-          console.log(data);
-          console.log(data.current.temp);
-          // call local weather function pass in data 
-          localWeather(data);
-          });
-      } 
-      else {
-          alert('Error: ' + response.statusText);
-      }
-      })
-      .catch(function (error) {
-      alert('Unable to connect to Server');
-      });
-}
-
-// local weather function
-function localWeather(data) {
-
-  // local weather vars
-  var localTemp = data.current.temp;
-  var localHumidity = data.current.humidity;
-  var localWindSpeed = data.current.wind_speed;
-  var localDesc = data.current.weather[0].description;
-  var iconCode = data.current.weather[0].icon;
-  var iconImgURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
- 
-  
-  // log data 
-  console.log(localTemp);
-  console.log(localHumidity);
-  console.log(localWindSpeed);
-  console.log(localDesc);
-  console.log(iconCode);
-
-  // create elements & set content 
-  var localTempEl = $("<p>").text(`Local Temp: ${localTemp} °F`);
-  var localHumidityEl = $("<p>").text(`Local Humidity ${localHumidity} %`);
-  var localWindSpeedEl = $("<p>").text(`Local Windspeed: ${localWindSpeed} MPH`);
-  var localDescEl = $("<p>").text(`Local Weather Desc: ${localDesc}`);
-  var iconImgEl = $("<img>").attr("src", iconImgURL);
-
-
-  // append elements 
-  currentWeatherEl.append(localTempEl, iconImgEl, localHumidityEl, localWindSpeedEl, localDescEl);
- 
-}
-/* End of Client Current Location Weather Functions  */
 
 // render destination airport weather function
 function arrivalWeather(data) {
@@ -138,12 +50,7 @@ function arrivalWeather(data) {
   var iconImgURL = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
  
   
-  // log data 
-  console.log(temp);
-  console.log(humidity);
-  console.log(windSpeed);
-  console.log(desc);
-  console.log(iconCode);
+
 
   // create elements & set content 
   var arrTempEl = $("<p>").text(`Temperature: ${temp} F`);
@@ -154,8 +61,8 @@ function arrivalWeather(data) {
 
 
   // append elements 
-  arrTempEl.append(arrIconImgEl);
-  destinationWeatherEl.append(arrTempEl, arrDescEl, arrHumidityEl, arrWindSpeedEl);
+  //arrTempEl.append(arrIconImgEl);
+  destinationWeatherEl.append(arrIconImgEl, arrTempEl, arrDescEl, arrHumidityEl, arrWindSpeedEl);
  
 }
 
@@ -173,7 +80,6 @@ function airportData(data) {
   fetch(weatherApiUrl)
       .then(function (response) {
       if (response.ok) {
-          console.log(response);
           response.json().then(function (data) {
           
           // call arrival weather and pass data  
@@ -200,14 +106,12 @@ function airportLocation(iata) {
 
   var geocodeURl =  `https://maps.googleapis.com/maps/api/geocode/json?address=${airport}&key=${googleApiKey}`;
 
-  console.log(geocodeURl);
 
   fetch(geocodeURl)
     .then(function (response) {
       if (response.ok) {
-        console.log(response);
+
         response.json().then(function (data) {
-        console.log(data);
         airportData(data);
         });
       } 
@@ -245,12 +149,6 @@ function renderFlightData(data) {
   var depTerminal = data.data[0].departure.terminal;
   var depGate = data.data[0].departure.gate;
 
-  // logging flight data
-  console.log(flightStatus);
-  console.log(arrAirport);
-  console.log(arrIATA);
-  console.log(terminal);
-  console.log(gate);
 
   // create elements & set content
 
@@ -295,13 +193,12 @@ function flightData(input) {
   localStorage.setItem(flightNum, flightNum);
 
   aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}&flight_iata=${flightNum}`;
-  console.log(aviationApiUrl);
+
 
   // get data from weathermap 
   fetch(aviationApiUrl)
       .then(function (response) {
       if (response.ok) {
-          console.log(response);
           response.json().then(function (data) {
       
           // call RenderFlightData
@@ -319,9 +216,21 @@ function flightData(input) {
 
 }
 
+function clearLocalStorage() {
+  // clear local storage
+  localStorage.clear();
+  // render on page
+  renderSearchHistory();
+}
+
 // 
-function handleSearchHistory(e) {
-  console.log(e.target);
+function handleSearchHistoryBtn() {
+  console.log($(this));
+
+  var input = $(this).text();
+  console.log(input);
+
+  flightData(input);
 }
 
 
@@ -331,33 +240,27 @@ function handleFlightSearch() {
   // if no data from user
   if(!inputEl.val()) {
     // please enter valid flight number
-    console.log(inputEl.val())
     return;
   }
   // fetch flight data 
   var input = inputEl.val();
-  console.log(input);
   // fetch flight data function passing input 
   flightData(input);
 }
 
 
-
+  
 // load local storage on reload
 renderSearchHistory();
 
-
-
-// calls get client current position 
-navigator.geolocation.getCurrentPosition(showLocation, error, options);
-
 // click listener will call handle flight search 
-$("#btn-search").click(handleFlightSearch);
+$("#btn-search").on("click", handleFlightSearch);
+$("#btn-clear").on("click", clearLocalStorage);
 
 // search history button
-$(".btn-search-history").click(handleSearchHistory);
+$(".search-history").on("click", "button", handleSearchHistoryBtn);
 
-  
+
 /* generic fetch 
 fetch(apiUrl)
 .then(function (response) {
@@ -376,3 +279,5 @@ fetch(apiUrl)
 });
 
 */
+
+
