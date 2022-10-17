@@ -9,3 +9,11 @@ body {
 .dep-info {
     margin: 25px 0;
 }
+
+.custom-btn-div {
+    height: 10px;
+}
+
+#delete-btn {
+    display: hide;
+}
