@@ -12,6 +12,7 @@ var inputEl = $(".input");
 var destinationWeatherEl = $(".destination-weather");
 var currentFlightEl = $(".current-flight");
 var searchHistoryEl = $(".search-history");
+var mediaEl = $("#media-section");
 
 
 var today = moment().format('MMMM Do YYYY');
@@ -248,6 +249,22 @@ function handleFlightSearch() {
   flightData(input);
 }
 
+function toggleModal() {
+
+
+  mediaEl.toggle();
+  
+/*
+  if(mediaEl.hasClass("show")){
+    mediaEl.addClass("hide");
+    mediaEl.removeClass("show")
+  }
+
+  $("#media-section").addClass("is-toggle");
+
+  */
+}
+
 
   
 // load local storage on reload
@@ -256,6 +273,8 @@ renderSearchHistory();
 // click listener will call handle flight search 
 $("#btn-search").on("click", handleFlightSearch);
 $("#btn-clear").on("click", clearLocalStorage);
+
+$("#delete-btn").on("click", toggleModal);
 
 // search history button
 $(".search-history").on("click", "button", handleSearchHistoryBtn);
