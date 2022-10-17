@@ -357,6 +357,13 @@ $("#btn-search").click(handleFlightSearch);
 // search history button
 $(".btn-search-history").click(handleSearchHistory);
 
+//intro delete button
+// $(".delete-btn").click(mediaHide)
+// var mediaSection = $(".media-section")
+// function mediaHide (){
+//   mediaSection.addClass(is-hidden);
+// }
+
   
 /* generic fetch 
 fetch(apiUrl)

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <!-- Include Bulma CSS -->
+  <link rel='stylesheet' href=
+'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css'>
+  
+  <!-- FontAwesome Library -->
+  <script src=
+'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js'>
+  </script>
+  
+  <!-- Custom CSS -->
+  <style>
+    div.columns {
+      margin-top: 50px;
+    }
+  
+    .modal-content {
+      margin-top: 100px;
+      width: 450px;
+    }
+  </style>
+</head>
+  
+<body>
+  <div class='container has-text-centered'>
+    <div class='columns is-mobile'>
+      <div class='column is-4'>
+        <button class="button is-link"
+                id='btn'>Click to see modal</button>
+        <div class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+  
+            <div class='box'>
+              <h1 class='title'>
+
+                How to find your flight code</h1>
+              <p>
+                Every boarding pass has a flight code on it. To find your flight code, look at your boarding pass or digital boarding pass. The flight code will be listed as "Flight" and will begin with 2-3 letters followed by some numbers.  
+              </p>
+              <p>
+                If you don't have a flight code and want to try our app, use our example boarding pass shown here!
+              </p>
+              <a href="boardingpass.png">
+                <img alt="boarding pass" src="/boardingpass.png"
+                width="500" height="500">
+
+            </div>
+          </div>
+          <button class="modal-close is-large" 
+                  aria-label="close">
+            Model
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Bulma does not have JavaScript included,
+    // hence custom JavaScript has to be
+    // written to open or close the modal
+    const modal = 
+          document.querySelector('.modal');
+    const btn = 
+          document.querySelector('#btn')
+    const close = 
+          document.querySelector('.modal-close')
+  
+    btn.addEventListener('click',
+                         function () {
+      modal.style.display = 'block'
+    })
+  
+    close.addEventListener('click',
+                           function () {
+      modal.style.display = 'none'
+    })
+  
+    window.addEventListener('click',
+                            function (event) {
+      if (event.target.className === 
+          'modal-background') {
+        modal.style.display = 'none'
+      }
+    })
+  </script>
+</body>
+</html>
