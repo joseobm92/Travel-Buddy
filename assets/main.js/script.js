@@ -16,11 +16,37 @@ var inputEl = $(".input");
 var currentWeatherEl = $(".current-weather");
 var destinationWeatherEl = $(".destination-weather");
 var currentFlightEl = $(".current-flight");
-
+var searchHistoryEl = $(".search-history");
 
 
 var today = moment().format('MMMM Do YYYY');
 console.log(today);
+
+// render search history on page 
+function renderSearchHistory() {
+  // empty the search history container
+  searchHistoryEl.empty();
+
+  // loop through the history array creating a button for each item
+  for(var i = 0; i < localStorage.length; i ++) {
+  
+      var flightNum = localStorage.getItem(localStorage.key(i));
+      console.log(flightNum);
+      var flightNumBtn = $("<button>").addClass("btn-search-history button is-link is-rounded is-outlined");
+      console.log(flightNumBtn);
+      flightNumBtn.text(flightNum);
+
+      //
+      searchHistoryEl.append(flightNumBtn);
+  }
+}
+
+/* Start of Client Current Location Weather Functions  */
+
+// error function message 
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
 
 // options for client coords 
 const options = {
@@ -29,7 +55,7 @@ const options = {
     maximumAge: 0
   };
   
-// get client coords function  
+// get client coords function & fetch weather data   
 function showLocation(pos) {
   const coords = pos.coords;
 
@@ -95,10 +121,13 @@ function localWeather(data) {
   currentWeatherEl.append(localTempEl, iconImgEl, localHumidityEl, localWindSpeedEl, localDescEl);
  
 }
+/* End of Client Current Location Weather Functions  */
 
-
-// destination weather function
+// render destination airport weather function
 function arrivalWeather(data) {
+
+  // clear container first 
+  destinationWeatherEl.empty();
 
   // weather vars
   var temp = data.current.temp;
@@ -117,22 +146,23 @@ function arrivalWeather(data) {
   console.log(iconCode);
 
   // create elements & set content 
-  var arrTempEl = $("<p>").text(`Destination Temp: ${temp} F`);
-  var arrHumidityEl = $("<p>").text(`Destination Humidity ${humidity} %`);
-  var arrWindSpeedEl = $("<p>").text(`Destination Windspeed: ${windSpeed} MPH`);
-  var arrDescEl = $("<p>").text(`Destination Weather Desc: ${desc}`);
+  var arrTempEl = $("<p>").text(`Temperature: ${temp} F`);
+  var arrHumidityEl = $("<p>").text(`Humidity ${humidity} %`);
+  var arrWindSpeedEl = $("<p>").text(`Windspeed: ${windSpeed} MPH`);
+  var arrDescEl = $("<p>").text(`Weather Desc: ${desc}`);
   var arrIconImgEl = $("<img>").attr("src", iconImgURL);
 
 
   // append elements 
   arrTempEl.append(arrIconImgEl);
-  destinationWeatherEl.append(arrTempEl, arrHumidityEl, arrWindSpeedEl, arrDescEl);
+  destinationWeatherEl.append(arrTempEl, arrDescEl, arrHumidityEl, arrWindSpeedEl);
  
 }
 
-
+// fetch airport weather data
 function airportData(data) {
 
+  // airport lat & long from google maps API
   var lat = data.results[0].geometry.location.lat;
   var lng = data.results[0].geometry.location.lng;
 
@@ -192,15 +222,28 @@ function airportLocation(iata) {
 
 
 
-
+// render flight data on page function
 function renderFlightData(data) {
+  // clear container first 
+  currentFlightEl.empty();
 
-  // flight local variables from data
-  var flightStatus = data.data[0].flight_status;
+  // arr flight local variables from data
   var arrAirport = data.data[0].arrival.airport;
   var arrIATA = data.data[0].arrival.iata;
   var terminal = data.data[0].arrival.terminal;
   var gate = data.data[0].arrival.gate;
+
+  // airline, flight num, status & date
+  var airline = data.data[0].airline.name;
+  var flightNum = data.data[0].flight.iata;
+  var flightDate = data.data[0].flight_date;
+  var flightStatus = data.data[0].flight_status;
+
+  // departure flight local variables from data
+  var depAirport = data.data[0].departure.airport;
+  var depIATA = data.data[0].departure.iata;
+  var depTerminal = data.data[0].departure.terminal;
+  var depGate = data.data[0].departure.gate;
 
   // logging flight data
   console.log(flightStatus);
@@ -209,23 +252,47 @@ function renderFlightData(data) {
   console.log(terminal);
   console.log(gate);
 
-  // create elements & set content 
-  var flightStatusEl = $("<p>").text(`Flight Status: ${flightStatus}`);
-  var airportEl = $("<p>").text(`Airport: ${arrAirport}`);
-  var terminalEl = $("<p>").text(`Terminal: ${terminal}`);
-  var gateEl = $("<p>").text(`Gate: ${gate}`);
- 
-  // append elements 
-  currentFlightEl.append(flightStatusEl, airportEl, terminalEl, gateEl);
+  // create elements & set content
 
+  var airlineEl = $("<p>").text(`Airline: ${airline}`);
+  var flightNumEl = $("<p>").text(`Flight Number: ${flightNum}`);
+  var flightDateEl = $("<p>").text(`Date: ${flightDate}`);
+  
+  // departure info vars
+  var depTitleEl = $("<h2>").text(`Departure Information`);
+  var depAirportEl = $("<p>").text(`Airport: ${depAirport} (${depIATA})`);
+  var depTerminalEl = $("<p>").text(`Terminal: ${depTerminal}`);
+  var depGateEl = $("<p>").text(`Gate: ${depGate}`);
+  
+  // arrival info vars
+  var arrTitleEl = $("<h2>").text(`Arrival Information`);
+  var arrFlightStatusEl = $("<p>").text(`Flight Status: ${flightStatus}`);
+  var arrAirportEl = $("<p>").text(`Airport: ${arrAirport} (${arrIATA})`);
+  var arrTerminalEl = $("<p>").text(`Terminal: ${terminal}`);
+  var arrGateEl = $("<p>").text(`Gate: ${gate}`);
+
+  // create departure info div
+  var depInfoEl = $("<div>").addClass("dep-info");
+  var arrInfoEl = $("<div>").addClass("arr-info");
+
+  depInfoEl.append(depTitleEl, depAirportEl, depTerminalEl, depGateEl);
+  arrInfoEl.append(arrTitleEl, arrAirportEl, arrTerminalEl, arrGateEl);
+  // append elements 
+  currentFlightEl.append(airlineEl, flightNumEl, flightDateEl, arrFlightStatusEl, depInfoEl, arrInfoEl);
+
+  // call render search history & airportlocation
+  renderSearchHistory();
   airportLocation(arrIATA);
 }
 
-// dont forget to add input parameter
+// fetch flight data through input 
 function flightData(input) {
 
   // flight number
   var flightNum = input;
+
+  // save to local storage
+  localStorage.setItem(flightNum, flightNum);
 
   aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}&flight_iata=${flightNum}`;
   console.log(aviationApiUrl);
@@ -252,7 +319,10 @@ function flightData(input) {
 
 }
 
-
+// 
+function handleSearchHistory(e) {
+  console.log(e.target);
+}
 
 
 // flight input search function
@@ -273,12 +343,8 @@ function handleFlightSearch() {
 
 
 
-
-// error function message 
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-
+// load local storage on reload
+renderSearchHistory();
 
 
 
@@ -287,6 +353,9 @@ navigator.geolocation.getCurrentPosition(showLocation, error, options);
 
 // click listener will call handle flight search 
 $("#btn-search").click(handleFlightSearch);
+
+// search history button
+$(".btn-search-history").click(handleSearchHistory);
 
   
 /* generic fetch 
