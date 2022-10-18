@@ -1,5 +1,7 @@
 body {
-    font-family: "Quicksand"
+    background: url(../images/background-img2.jpg);
+    font-family: "Quicksand";
+
 }
 
 .arr-info {
@@ -16,4 +18,15 @@ body {
 
 #delete-btn {
     display: hide;
+}
+
+.transparent {
+    background-color: rgba(0,0,0,.5);
+}
+
+.basic-card-style {
+    border-radius: 6px;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+    color: #4a4a4a;
+    display: block;
 }

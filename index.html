@@ -18,7 +18,7 @@
 
 <body>
 
-  <nav class="navbar has-shadow is-info">
+  <nav class="navbar has-shadow">
     <div class="navbar-brand">
       <a class="navbar-item">
         <img src="./assets/images/airplane.png" alt="site logo" style="max-height:90px" class="py-2 px-2">
@@ -78,29 +78,20 @@
 
 
       <div class="column is-5">
-        <div class="box has-background-info">
-          <div class="flight-status section">
-            <section class="content">
-              <h1 class="title is-2">Flight Status Data</h1>
-              <p class="subtitle is-5">This is the most updated information about your flight:</p>
-              <!-- <img class="column" src="./assets/images/weather-section.png"> -->
-            </section>
-            <div class="current-flight section is is-size-4 has-text-weight-bold"></div>
-          </div>
+        <div class="flight-status section">
+          <section class="content" id="flight-status-info">
+          </section>
+          <div class="current-flight section is is-size-4 has-text-weight-bold"></div>
         </div>
       </div>
 
 
       <div class="column is-5">
-        <div class="box has-background-info">
-          <div class="weather-data section">
-            <section class="content">
-              <h1 class="title is-2">Weather Information</h1>
-              <p class="subtitle is-5"> This is the weather for your destination city:</p>
-            </section>
-            <div class="weather-container section is-size-4 has-text-weight-bold">
-              <div class="destination-weather"></div>
-            </div>
+        <div class="weather-data section">
+          <section class="content" id="weather-status-info">
+          </section>
+          <div class="weather-container section is-size-4 has-text-weight-bold">
+            <div class="destination-weather"></div>
           </div>
         </div>
       </div>
@@ -177,7 +168,7 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-  <script src="./assets/main.js/script.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
