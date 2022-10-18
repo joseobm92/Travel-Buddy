@@ -18,7 +18,16 @@
 
 <body>
 
-  <nav class="navbar has-shadow">
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <h3 class="title is-3 mb-6">Welcome to Travel Buddy!<i class="fa-solid fa-plane ml-6"></i> </h3>
+      <p class="subtitle is-6">Travel Buddy provides you with the latest information about your flight, even giving you the weather forecast so you can be prepared for when you get to your destination. Just search your flight number, and we'll do the rest. Have a great trip! To find your flight number, look at your digital or printed boarding pass, or check your airline reservation. Here’s a sample for you.</p>
+      <img style="width: 600px; height: 300px;" src="./assets/images/boardingpass-long.PNG" alt="">
+    </div>
+  </div>
+
+  <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item">
         <img src="./assets/images/airplane.png" alt="site logo" style="max-height:90px" class="py-2 px-2">
@@ -41,7 +50,7 @@
   <article class="media" id="media-section">
     <!-- <figure class="media-center"> -->
     <p class="image is-500x500 mt-3 ml-3">
-      <img src="./assets/images/boardingpass.png ">
+      <img src="./assets/images/boardingpass_square.png">
     </p>
     </figure>
     <div class="media-content">
@@ -63,9 +72,7 @@
   </article>
 
 
-
-
-  <section class="section has-background-primary-light mb-3 mt-3">
+  <section class="section mb-3 mt-3">
     <div class="columns">
       <aside class="content is-2-mobile">
         <input class="input is-normal is-rounded" type="text" placeholder="Flight number">
@@ -97,12 +104,11 @@
       </div>
     </div>
   </section>
-
   <section class="section py-1">
     <div class="container">
       <div class="columns is-multiline">
         <div class="column is-one-third">
-          <article class="notification media has-background-white">
+          <article class="notification custom-card-style media">
             <figure class="media-left">
               <span class="icon">
                 <i class="has-text-warning fas fa-plane"></i>
@@ -110,16 +116,16 @@
             </figure>
             <div class="media-content">
               <div class="content">
-                <h1 class="title is-size-5">Aviation Stack</h1>
-                <p class="is-size-6 subtitle">
-                  Here is some information about Aviation Stack.
+                <h1 class="title is-size-5">Powered by <a href="http://aviationstack.com/" target="_blank" rel="noopener noreferrer">Aviation Stack</a></h1>
+                <p class="is-size-6 title">
+                  The aviationstack API tracks global flight data in real time. More than 5,000 companies worldwide are using aviation stack to power their apps. 
                 </p>
               </div>
             </div>
           </article>
         </div>
         <div class="column is-one-third">
-          <article class="notification has-background-white media">
+          <article class="notification custom-card-style media">
             <figure class="media-left">
               <span class="icon has-text-info">
                 <i class="fas fa-cloud"></i>
@@ -127,16 +133,16 @@
             </figure>
             <div class="media-content">
               <div class="content">
-                <h1 class="title is-size-5">Open Weather</h1>
-                <p class="is-size-6 subtitle">
-                  Here is some info about Open Weather.
+                <h1 class="title is-size-5">Powered by <a href="http://openweathermap.org/" target="_blank" rel="noopener noreferrer">Open Weather</a></h1>
+                <p class="is-size-6 title">
+                  Open Weather is a trusted source of weather data. Our app receives the most up-to-date forecast so that you’ll know if you need to pack that umbrella in your carry-on. 
                 </p>
               </div>
             </div>
           </article>
         </div>
         <div class="column is-one-third">
-          <article class="notification has-background-white media">
+          <article class="notification custom-card-style media">
             <figure class="media-left">
               <span class="icon has-text-danger">
                 <i class="fas fa-map-pin"></i>
@@ -144,9 +150,9 @@
             </figure>
             <div class="media-content">
               <div class="content">
-                <h1 class="title is-size-5">Google Maps</h1>
-                <p class="is-size-6 subtitle">
-                  Here is some info about Google Maps.
+                <h1 class="title is-size-5">Powered by <a href="http://developers.google.com/maps" target="_blank" rel="noopener noreferrer">Google Maps</a></h1>
+                <p class="is-size-6 title">
+                  Google Maps API is our app’s co-pilot, providing us with accurate coordinates to your destination so that we can accurately predict the weather for you. 
                 </p>
               </div>
             </div>
@@ -155,12 +161,11 @@
       </div>
   </section>
 
-  <footer class="footer py-1">
+  <footer class="footer py-4">
     <div class="content has-text-centered">
       <p>
-        <strong>Travel Buddy</strong> by <a href="https://jgthms.com">The Serial Coders</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        <strong>Travel Buddy</strong> by <a href="https://github.com/joseobm92/Travel-Buddy" target="_blank" rel="noopener noreferrer">The Serial Coders</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php" target="_blank" rel="noopener noreferrer">MIT</a> © 2022 All rights reserved.
       </p>
     </div>
   </footer>

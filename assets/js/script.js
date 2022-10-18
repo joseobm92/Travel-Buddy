@@ -258,6 +258,10 @@ function toggleModal() {
   mediaEl.toggle();
 }
 
+ // Modal functionality 
+ $(".modal-background").on('click', () => {
+  $(".modal").removeClass("is-active")
+})
 
   
 // load local storage on reload
