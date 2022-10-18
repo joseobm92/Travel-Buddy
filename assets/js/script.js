@@ -240,6 +240,7 @@ function handleFlightSearch() {
     
     setTimeout(function() {
       inputEl.val("");
+      inputEl.removeClass("has-text-danger");
     }, 2000);
     return;
   }
