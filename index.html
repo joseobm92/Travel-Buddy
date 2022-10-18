@@ -71,7 +71,6 @@
 
   </article>
 
-
   <section class="section mb-3 mt-3">
     <div class="columns">
       <aside class="content is-2-mobile">
@@ -83,27 +82,22 @@
         <div class="search-history"></div>
       </aside>
 
-
       <div class="column is-5">
         <div class="flight-status section">
           <section class="content" id="flight-status-info">
           </section>
-          <div class="current-flight section is is-size-4 has-text-weight-bold"></div>
         </div>
       </div>
-
 
       <div class="column is-5">
         <div class="weather-data section">
           <section class="content" id="weather-status-info">
           </section>
-          <div class="weather-container section is-size-4 has-text-weight-bold">
-            <div class="destination-weather"></div>
-          </div>
         </div>
       </div>
     </div>
   </section>
+
   <section class="section py-1">
     <div class="container">
       <div class="columns is-multiline">
@@ -170,9 +164,16 @@
     </div>
   </footer>
 
+  <div class="modal" id="modal-search">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <h3 class="title is-3 mb-6">Please Enter a Valid Flight Number</h3>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script> 
   <script src="./assets/js/script.js"></script>
 </body>
 
