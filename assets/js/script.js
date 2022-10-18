@@ -6,18 +6,12 @@ var aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviat
 var weatherApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat={cityLat}&lon={cityLon}&units=imperial&exclude=minutely,hourly,alerts&appid=${weatherApiKey}`;
 
 
-
 // Global DOM elements
 var inputEl = $(".input");
 var destinationWeatherEl = $("#weather-status-info");
 var currentFlightEl = $("#flight-status-info");
 var searchHistoryEl = $(".search-history");
 var mediaEl = $("#media-section");
-
-
-var today = moment().format('MMMM Do YYYY');
-console.log(today);
-
 
 // render search history on page 
 function renderSearchHistory() {
@@ -27,11 +21,10 @@ function renderSearchHistory() {
   // loop through the history array creating a button for each item
   for(var i = 0; i < localStorage.length; i ++) {
   
+    // create button, add content & append 
       var flightNum = localStorage.getItem(localStorage.key(i));
-      var flightNumBtn = $("<button>").addClass("btn-search-history button is-link is-rounded is-outlined");
-      
+      var flightNumBtn = $("<button>").addClass("button is-link is-rounded is-outlined");
       flightNumBtn.text(flightNum);
-
       searchHistoryEl.append(flightNumBtn);
   }
 }
@@ -95,8 +88,6 @@ function airportData(data) {
       .catch(function (error) {
       alert('Unable to connect to Server');
       });
-
-
 }
 
 
@@ -104,10 +95,7 @@ function airportData(data) {
 function airportLocation(iata) {
   
   var airport = iata;
-
-
   var geocodeURl =  `https://maps.googleapis.com/maps/api/geocode/json?address=${airport}&key=${googleApiKey}`;
-
 
   fetch(geocodeURl)
     .then(function (response) {
@@ -222,11 +210,12 @@ function flightData(input) {
 
 }
 
+// clear local storage on page 
 function clearLocalStorage() {
   // clear local storage
   localStorage.clear();
-  // render on page
-  renderSearchHistory();
+  // empty search history container
+  searchHistoryEl.empty();
 }
 
 
@@ -246,6 +235,12 @@ function handleFlightSearch() {
   // if no data from user
   if(!inputEl.val()) {
     // please enter valid flight number
+    inputEl.val("Please Enter A Valid Flight Number!");
+    inputEl.addClass("has-text-danger");
+    
+    setTimeout(function() {
+      inputEl.val("");
+    }, 2000);
     return;
   }
   // fetch flight data 
