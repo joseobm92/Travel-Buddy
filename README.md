@@ -8,7 +8,7 @@ Travel Buddy provides you with the latest information about your flight, even gi
 <li><a href="#usage">Usage</a></li>
 <li><a href="#contributing">Screenshots</a></li>
 <li><a href="#screenshots">Contributing</a></li>
-<li><a href="#ourteam">Our Team</a></li>
+<li><a href="#team">Team</a></li>
 <li><a href="#roadmap">Roadmap</a></li>
 <li><a href="#feedback">Feedback</a></li>
 <li><a href="#license">License</a></li>
@@ -31,10 +31,10 @@ After long discussion on ideas of issues currently facing our world, four member
 ## Screenshots
 
 <img src="README\assets\main page.gif" width="75%" height="200" />
-<div style="display: flex; flex-wrap: nowrap; justify-content: space-between; width: 75%; height: 200px;" >
-<img style="width: 33%; height: 100%;" src="README\assets\chrome-capture-2022-9-18.gif"/>
-<img style="width: 33%; height: 100%;" src="README\assets\cc 2.gif"/>
-<img style="width: 33%; height: 100%;"src="README\assets\cc 3.gif"/>
+<div style="display: flex; flex-wrap: nowrap; justify-content: space-between; width: 100%; height: 200;" >
+<img style="width: 250px; height: 250px;" src="README\assets\chrome-capture-2022-9-18.gif"/>
+<img style="width: 250px; height: 250px;" src="README\assets\cc 2.gif"/>
+<img style="width: 250px; height: 250px;" src="README\assets\cc 3.gif"/>
 </div>
 
 ## Contributing
@@ -43,13 +43,13 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-## Our Team
+## <h2 id="team">Our Team</h2>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 75%; height: 500px; margin-bottom: 20px;" >
 <img style="width: 200px; height: 200px;"src="README\assets\110702442.jpeg"/>
 <img style="padding: 1px 0px; width: 200px; height: 200px;" src="README\assets\28867713.png"/>
 <img style="padding: 1px 0px; width: 200px; height: 200px;" src="README\assets\111654163.jpeg"/>
-<img style="padding: 1px 0px; width: 200px; height: 200px;" src="README\assets\111654163.jpeg"/>
+<img style="padding: 1px 0px; width: 200px; height: 200px;" src="README\assets\111098928.jpeg"/>
 </div>
 
 ## Roadmap
