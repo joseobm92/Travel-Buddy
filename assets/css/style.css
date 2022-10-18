@@ -17,3 +17,23 @@ body {
 #delete-btn {
     display: hide;
 }
+
+/* Color Theme Swatches in Hex */
+.Fashion-1-hex { color: #5A878C; }
+.Fashion-2-hex { color: #568C8C; }
+.Fashion-3-hex { color: #D9D3C1; }
+.Fashion-4-hex { color: #BFB8AA; }
+.Fashion-5-hex { color: #F2EBDC; }
+/* 
+.box {
+    background-color:#5A878C ;
+    color:#BFB8AA
+}
+
+.navbar {
+    background-color: #568C8C;
+}
+.section p {
+    color:#BFB8AA
+} */
+
