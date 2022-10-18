@@ -29,13 +29,14 @@ body {
     border-radius: 6px;
     box-shadow: 0 0.8em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
     display: block;
-    background-color: transparent;
+    background: rgba(248, 248, 248, 0.5);
 }
 
 .custom-card-style {
     border-radius: 6px;
     box-shadow: 0 0.8em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
     display: block;
+    background: rgba(248, 248, 248, 0.5);
 }
 .navbar {
     background-color: transparent;

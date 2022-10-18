@@ -1,5 +1,5 @@
 // set global api keys & api url 
-var aviationApiKey = `df8a6aa1b375ed3b7aa261c6d264732b`;
+var aviationApiKey = `3c291d3c8bfd6948b2e381634b73dc41`;
 var weatherApiKey = `6735dc29946d3cda39fe5ca05b775eab`;
 var googleApiKey = `AIzaSyBUQL-4--T-AVcWTpL6FLw-FpMsIkEpjuU`
 var aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}`;
