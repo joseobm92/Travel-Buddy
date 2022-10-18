@@ -299,4 +299,7 @@ fetch(apiUrl)
 
 */
 
-
+ // Modal functionality 
+$(".modal-background").on('click', () => {
+  $(".modal").removeClass("is-active")
+})
