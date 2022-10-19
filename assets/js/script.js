@@ -187,7 +187,7 @@ function flightData(input) {
   // save to local storage
   localStorage.setItem(flightNum, flightNum);
 
-  aviationApiUrl = `http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}&flight_iata=${flightNum}`;
+  aviationApiUrl = `https://floating-headland-95050.herokuapp.com/http://api.aviationstack.com/v1/flights?access_key=${aviationApiKey}&flight_iata=${flightNum}`;
 
   // get data from weathermap 
   fetch(aviationApiUrl)
