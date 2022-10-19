@@ -6,8 +6,9 @@ Travel Buddy provides you with the latest information about your flight, even gi
 
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#contributing">Screenshots</a></li>
-<li><a href="#screenshots">Contributing</a></li>
+<li><a href="#technology">Technology</a></li>
+<li><a href="#link">Link</a></li>
+<li><a href="#screenshots">Screenshots</a></li>
 <li><a href="#team">Team</a></li>
 <li><a href="#roadmap">Roadmap</a></li>
 <li><a href="#feedback">Feedback</a></li>
@@ -28,20 +29,40 @@ After long discussion on ideas of issues currently facing our world, four member
 <img style="height: 75px;" src="README\assets\search.png"/> <img style="height: 75px;" src="README\assets\Document.png"/>
 </figure>
 
+## Technology
+
+#### <strong>Below is a list of the API's used in our application and detrimental to the completion of this project.</strong>
+
+<li>Aviation Stack</li>
+<li>Openweather</li>
+<li>Google Maps</li>
+
+#### <strong>As well as some of the technologies used to create this.</strong>
+
+<li>HTML 5</li>
+<li>CSS 3</li>
+<li>JavaScript</li>
+<li>Bulma</li>
+<li>JQuery</li>
+<li>Font Awesome</li>
+<li>Google Fonts</li>
+
+#### <strong>Photos Credits</strong>
+
+<li><a>Pexels.com</a></li>
+
+## Link
+
+https://joseobm92.github.io/Travel-Buddy/
+
 ## Screenshots
 
-<img src="README\assets\main page.gif" width="75%" height="200" />
-<div style="display: flex; flex-wrap: nowrap; justify-content: space-between; width: 100%; height: 200;" >
-<img style="width: 250px; height: 250px;" src="README\assets\chrome-capture-2022-9-18.gif"/>
-<img style="width: 250px; height: 250px;" src="README\assets\cc 2.gif"/>
-<img style="width: 250px; height: 250px;" src="README\assets\cc 3.gif"/>
+<img src="README\assets\Main screen.gif" width="75%" height="200" />
+<div style="display: flex; flex-wrap: nowrap; justify-content: space-between; width: 75%; height: 200;" >
+<img style="width: 250px; height: 250px;" src="README\assets\iphone12.gif"/>
+<img style="width: 250px; height: 250px;" src="README\assets\iphone4.gif"/>
+<img style="width: 250px; height: 250px;" src="README\assets\ipadmini.gif"/>
 </div>
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## <h2 id="team">Our Team</h2>
 
